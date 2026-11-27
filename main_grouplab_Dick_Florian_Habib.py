@@ -99,6 +99,15 @@ def get_valid_input(prompt, valid_options): #this'll be used to keep asking the 
         print("INVALID CHOICE! Please enter one of: " + ", ".join(valid_options))
 
 
+def get_valid_yes_no(prompt): #this'll be used to ask a yes/no question until the user provides a valid answer (Return True/Flase)
+    while True:
+        answer = input(prompt).strip().lower()
+        if answer in ("y", "yes"):
+            return True
+        if answer in ("n", "no"):
+            return False
+        print("Please Enter 'y' or 'n'")
+
 
 
 
