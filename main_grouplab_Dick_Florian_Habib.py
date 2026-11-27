@@ -91,6 +91,12 @@ VALID_CHOICES = {
 }
 
 
+def get_valid_input(prompt, valid_options): #this'll be used to keep asking the user until they provide us with a valid option 
+    while True:
+        answer = input(prompt).strip().lower()
+        if answer in valid_options:
+            return answer
+        print("INVALID CHOICE! Please enter one of: " + ", ".join(valid_options))
 
 
 
