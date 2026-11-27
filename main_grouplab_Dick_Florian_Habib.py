@@ -4,7 +4,7 @@ Name: Esther Dick, Maeve Florian, Marjan Habib
 Date: 11/23/2026
 Course: CSC-157
 Lab: Group 
-Program Description: 
+Program Description: A personalized coffee and tea recommendation program for the terminal. The user answers questions about their beverage preferences, and the program recommends coffee or tea selections based on their answers.
 """
 
 from beverage_menu import beverage_menu
