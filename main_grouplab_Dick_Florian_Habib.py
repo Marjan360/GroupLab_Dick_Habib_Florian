@@ -79,7 +79,7 @@ for entry in beverage_menu:
 #MARJAN: Recommendation Logic System (Decisions & Loops)
 #============================================================================================================================================
 
- LEVELS = ["low", "moderate", "high"]
+LEVELS = ["low", "moderate", "high"]
 
 VALID_CHOICES = {
     "type": ["coffee", "tea"],
@@ -149,6 +149,15 @@ def get_more_matches(beverage_list, answers, how_many=3): #this is an EXPLORE MO
             others.append(item)
     return others[:how_many]
 
+
+
+def build_reason(matches): #this'll turn a list of matches preferences into a short sentence for display
+    if not matches:
+        return "It doesn't match your preference closely..."
+    if len(matches) == 1:
+        return "It matches your preference for " + matches[0] + "."
+    return ("It matches your preference for "
+            + ", ".join(matches[:-1]) + " and " +  matches[-1] + ".")
 
 
 
