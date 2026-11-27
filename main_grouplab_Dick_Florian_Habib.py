@@ -118,6 +118,21 @@ def score_beverages(beverage_list, answers): #this'll score every beverage of th
     return scored   #this returns a list of (beverage, matches, score) tuples; we'll skip drink of other types entirely 
 
 
+def rank_beverages(scored):  #this'll sort best score first; the ties are broken alphabetically
+    return sorted(scored, key=lambda item: (-item[2], item[0]._name))
+
+
+def get_top_matches(beverage_list, answers):  #this'll return every beverage tied for the highest score (may be none, may be 2, so on and so forth)
+    ranked = rank_beverages(score_beverages(beverage_list, answers))
+    if not ranked:
+        return[]
+
+    best_score = ranked[0][2]
+    top = []
+    for item in ranked:
+        if item[2] == best_score:
+            top.append(item)
+    return top
 
 
 
