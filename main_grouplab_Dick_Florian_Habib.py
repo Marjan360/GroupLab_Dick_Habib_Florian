@@ -109,7 +109,13 @@ def get_valid_yes_no(prompt): #this'll be used to ask a yes/no question until th
         print("Please Enter 'y' or 'n'")
 
 
-
+def score_beverages(beverage_list, answers): #this'll score every beverage of the type the user chooses
+    scored = []
+    for beverage in beverage_list:
+        if beverage._type == answers["type"]:
+            matches = beverage.matching_preferences(answers)
+            scored.append((beverage, matches, len(matches)))
+    return scored   #this returns a list of (beverage, matches, score) tuples; we'll skip drink of other types entirely 
 
 
 
