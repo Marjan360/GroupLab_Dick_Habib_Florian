@@ -7,6 +7,8 @@ Lab: Group
 Program Description: 
 """
 
+from beverage_menu import beverage_menu
+
 class Beverage:
 
     # When a beverage is created, store its details.
@@ -51,4 +53,17 @@ class Beverage:
                 matches.append(preference)
 
         return matches
-    
+
+# Build a list of Beverage objects from the menu entries.
+beverages = []
+for entry in beverage_menu:
+    beverage = Beverage(
+        entry["name"],
+        entry["beverage_type"],
+        entry["flavor"],
+        entry["sweetness"],
+        entry["bitterness"],
+        entry["caffeine"],
+        entry["temperature"],
+    )
+    beverages.append(beverage)
