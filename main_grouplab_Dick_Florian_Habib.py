@@ -81,4 +81,65 @@ for entry in beverage_menu:
 
  LEVELS = ["low", "moderate", "high"]
 
+VALID_CHOICES = {
+    "type": ["coffee", "tea"],
+    "temperature":["hot", "iced"],
+    "caffeine": LEVELS,
+    "sweetness": LEVELS,
+    "bitterness": LEVELS,
+    "flavor":["vanilla","chocolate", "caramel", "fruity", "spiced", "roasted", "creamy", "malty", "nutty", "citrus", "floral", "grassy", "mint", "tart"],
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
