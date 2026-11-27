@@ -137,6 +137,20 @@ def get_top_matches(beverage_list, answers):  #this'll return every beverage tie
 
 
 
+def get_more_matches(beverage_list, answers, how_many=3): #this is an EXPLORE MORE option where the next-best drinks that still match at least one preference are displayed
+    ranked = rank_beverages(score_beverages(beverage_list, answers))
+    if not ranked:
+        return[]
+
+    best_score = ranked[0][2]
+    others = []
+    for item in ranked:
+        if 0 < item[2] < best_score:
+            others.append(item)
+    return others[:how_many]
+
+
+
 
 
 
