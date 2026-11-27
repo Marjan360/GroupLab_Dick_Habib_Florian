@@ -7,6 +7,10 @@ Lab: Group
 Program Description: A personalized coffee and tea recommendation program for the terminal. The user answers questions about their beverage preferences, and the program recommends coffee or tea selections based on their answers.
 """
 
+#============================================================================================================================================
+#ESTHER: Classes & Data
+#============================================================================================================================================
+
 from beverage_menu import beverage_menu
 
 class Beverage:
@@ -67,3 +71,14 @@ for entry in beverage_menu:
         entry["temperature"],
     )
     beverages.append(beverage)
+
+
+
+
+#============================================================================================================================================
+#MARJAN: Recommendation Logic System (Decisions & Loops)
+#============================================================================================================================================
+
+ LEVELS = ["low", "moderate", "high"]
+
+
