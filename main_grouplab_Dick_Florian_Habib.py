@@ -151,6 +151,10 @@ def get_more_matches(beverage_list, answers, how_many=3): #this is an EXPLORE MO
 
 
 
+
+
+
+
 def build_reason(matches): #this'll turn a list of matches preferences into a short sentence for display
     if not matches:
         return "It doesn't match your preference closely..."
@@ -161,6 +165,59 @@ def build_reason(matches): #this'll turn a list of matches preferences into a sh
 
 
 
+#SELF-TESTS (NOTE: delete this part after Maeve's questionnaire is connected.
+#****************************************************************************
+if __name__ == "__main__":
+    tea = {"type": "tea", "flavor": "floral", "sweetness": "low",
+           "bitterness": "low", "caffeine": "low", "temperature": "hot"}
+
+
+    
+    #coffee is excluded when the user picks tea
+    scored = score_beverages(beverages, tea)
+    assert scored and all(b._type == "tea" for b, _, _ in scored)
+
+    #scores are all calc. correctly
+    scores = {b._name: s for b, _, s in scored}
+    assert scores["Chamomile"] == 5
+    assert scores["Peppermint Tea"] == 4
+
+    
+    #hot, low-caff. tea needs to rank above iced, high-caff. tea
+    names = [b._name for b, _, _ in rank_beverages(scored)]
+    assert names.index("Chamomile") < names.index("High-Caffeine Iced Tea")
+
+    #the ties produce multiple top matches
+    tie = dict(tea, flavor="chocolate")
+    top = get_top_matches(beverages, tie)
+    top_names = {b._name for b, _, _ in top}
+    assert len(top) > 1 and len({s for _, _, s in top}) == 1
+    assert {"Chamomile", "Genmaicha", "Peppermint Tea"} <= top_names
+
+    #both types CAN BE recommended
+    coffee = dict(tea, type="coffee", flavor="creamy")
+    coffee_top = get_top_matches(beverages, coffee)
+    assert coffee_top and all(b._type == "coffee" for b, _, _ in coffee_top)
+
+    
+    #the EXPLORE MORE function should exclude top matches AND AND AND only shows scores > 0
+    more = get_more_matches(beverages, tea)
+    assert more and "Chamomile" not in [b._name for b, _, _ in more]
+    assert all(0 < s < 5 for _, _, s in more)
+
+
+
+
+
+
+    #ALAS! 
+    print("All recommender tests passed.\n")
+    for b, m, s in get_top_matches(beverages, tea):
+        print(f"Top match: {b._name} (score {s}/5) - {build_reason(m)}")
+    for b, m, s in more:
+        print(f"Also try:  {b._name} (score {s}/5) - {build_reason(m)}")
+
+#****************************************************************************
 
 
 
